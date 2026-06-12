@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio — Projects</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  </head>
+  <body>
+
+    <!-- NAVBAR -->
+    <header>
+      <nav>
+        <div class="logo">Kossi Aholou</div>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- HERO + FILTER BAR -->
+    <section id="projects-hero">
+      <h1>All Projects</h1>
+
+      <!-- Technology filter buttons -->
+      <div class="filter-bar">
+        <button class="btn filter-btn active" data-filter="all">All</button>
+        <button class="btn filter-btn" data-filter="react">React</button>
+        <button class="btn filter-btn" data-filter="python">Python</button>
+        <button class="btn filter-btn" data-filter="javascript">JavaScript</button>
+        <button class="btn filter-btn" data-filter="nodejs">Node.JS</button>
+        <button class="btn filter-btn" data-filter="datascience">Data Science</button>
+      </div>
+
+      <!-- Live text search bar (Unit 5 — Script 2) -->
+      <div class="search-bar-wrapper">
+        <input
+          type="text"
+          id="search-bar"
+          class="search-bar"
+          placeholder="Search projects by title or keyword..."
+          aria-label="Search projects"
+        />
+      </div>
+    </section>
+
+
+    <!-- PROJECT CARDS -->
+    <section id="featured-projects">
+      <div class="projects-grid-full">
+
+        <!-- CARD 1 -->
+        <div class="project-card" data-tech="react">
+          <div class="card-image">
+            <span class="card-image-label">React</span>
+          </div>
+          <div class="card-info">
+            <h3>E-Commerce Dashboard</h3>
+            <p>A responsive admin dashboard built with React. Features real-time sales charts, inventory management, and user authentication.</p>
+            <div class="tech-stack">
+              <span>React</span>
+              <span>CSS</span>
+            </div>
+            <a href="#" class="card-link">View Project →</a>
+          </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="project-card" data-tech="python">
+          <div class="card-image">
+            <span class="card-image-label">Python</span>
+          </div>
+          <div class="card-info">
+            <h3>Data Pipeline Automation</h3>
+            <p>A Python script that automates the extraction, transformation, and loading of CSV datasets into a PostgreSQL database.</p>
+            <div class="tech-stack">
+              <span>Python</span>
+              <span>PostgreSQL</span>
+            </div>
+            <a href="#" class="card-link">View Project →</a>
+          </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="project-card" data-tech="javascript">
+          <div class="card-image">
+            <span class="card-image-label">JavaScript</span>
+          </div>
+          <div class="card-info">
+            <h3>Interactive Quiz App</h3>
+            <p>A browser-based quiz application built with vanilla JavaScript. Supports multiple categories, timers, and score tracking.</p>
+            <div class="tech-stack">
+              <span>JavaScript</span>
+              <span>HTML</span>
+            </div>
+            <a href="#" class="card-link">View Project →</a>
+          </div>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="project-card" data-tech="datascience">
+          <div class="card-image">
+            <span class="card-image-label">Data Science</span>
+          </div>
+          <div class="card-info">
+            <h3>Sentiment Analysis Tool</h3>
+            <p>A machine learning model that classifies customer reviews as positive, negative, or neutral using natural language processing.</p>
+            <div class="tech-stack">
+              <span>Python</span>
+              <span>Data Science</span>
+            </div>
+            <a href="#" class="card-link">View Project →</a>
+          </div>
+        </div>
+
+        <!-- CARD 5 -->
+        <div class="project-card" data-tech="nodejs">
+          <div class="card-image">
+            <span class="card-image-label">Node.JS</span>
+          </div>
+          <div class="card-info">
+            <h3>REST API for a Blog Platform</h3>
+            <p>A fully RESTful API built with Node.js and Express. Supports CRUD operations for posts, comments, and user accounts.</p>
+            <div class="tech-stack">
+              <span>Node.JS</span>
+              <span>Express</span>
+            </div>
+            <a href="#" class="card-link">View Project →</a>
+          </div>
+        </div>
+
+        <!-- CARD 6 -->
+        <div class="project-card" data-tech="react">
+          <div class="card-image">
+            <span class="card-image-label">React</span>
+          </div>
+          <div class="card-info">
+            <h3>Weather App with API</h3>
+            <p>A React application that fetches live weather data from an external API and displays forecasts with dynamic icons and charts.</p>
+            <div class="tech-stack">
+              <span>React</span>
+              <span>API</span>
+            </div>
+            <a href="#" class="card-link">View Project →</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- No-results message — shown by JS when no card matches -->
+      <p id="no-results" class="no-results-msg" style="display: none;">
+        No projects match your search. Try a different keyword or filter.
+      </p>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+      <p>
+        <a href="#" title="GitHub"><i class="fa-brands fa-github"></i> GitHub</a>
+        &nbsp;|&nbsp;
+        <a href="https://www.linkedin.com/in/kossi-edem-emile-d-aholou-2023a5194/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      </p>
+    </footer>
+
+
+    <!-- ============================================================
+         SCRIPT 2 — Multi-Criteria Project Filter with Live Text Search
+         Unit 5 — COMP266 — Kossi Emile Aholou
+         Original work. Extends the Unit 4 technology filter by adding
+         a live text search that combines with the active button filter.
+         ============================================================ -->
+    <script>
+
+      // ----------------------------------------------------------
+      // GLOBAL VARIABLES
+      // currentFilter : the active technology button value ('all' by default)
+      // searchQuery   : the lowercase text typed in the search bar ('' by default)
+      // ----------------------------------------------------------
+      let currentFilter = 'all';
+      let searchQuery = '';
+
+
+      // ----------------------------------------------------------
+      // applyFilters()
+      // Core logic: loops over all project cards and decides
+      // whether each card should be visible or hidden.
+      // A card is shown only if it matches BOTH criteria:
+      //   - techMatch : card's data-tech matches currentFilter (or filter is 'all')
+      //   - textMatch : card's title or description contains searchQuery
+      // Calls showNoResults() if no card is visible.
+      // ----------------------------------------------------------
+      function applyFilters() {
+        var cards = document.querySelectorAll('.project-card');
+        var visible = 0;
+
+        cards.forEach(function(card) {
+          // Read the text content of title and description (lowercase for comparison)
+          var title = card.querySelector('h3').textContent.toLowerCase();
+          var desc  = card.querySelector('p').textContent.toLowerCase();
+
+          // Check technology filter
+          var techMatch = (currentFilter === 'all') || (card.dataset.tech === currentFilter);
+
+          // Check text search — true if search bar is empty OR text is found
+          var textMatch = (searchQuery === '') ||
+                          (title.indexOf(searchQuery) !== -1) ||
+                          (desc.indexOf(searchQuery) !== -1);
+
+          // Show or hide the card
+          if (techMatch && textMatch) {
+            card.style.display = 'block';
+            visible += 1;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        // Show "no results" message if every card is hidden
+        showNoResults(visible === 0);
+      }
+
+
+      // ----------------------------------------------------------
+      // setFilter(tech)
+      // Updates the active technology filter, refreshes the active
+      // button style, then re-runs applyFilters().
+      // Called when the user clicks a filter button.
+      // ----------------------------------------------------------
+      function setFilter(tech) {
+        currentFilter = tech;
+
+        // Update active button highlight
+        document.querySelectorAll('.filter-btn').forEach(function(btn) {
+          btn.classList.remove('active');
+          if (btn.dataset.filter === tech) {
+            btn.classList.add('active');
+          }
+        });
+
+        applyFilters();
+      }
+
+
+      // ----------------------------------------------------------
+      // setSearch(query)
+      // Updates the global searchQuery variable (lowercased),
+      // then re-runs applyFilters().
+      // Called on every keystroke in the search bar.
+      // ----------------------------------------------------------
+      function setSearch(query) {
+        searchQuery = query.toLowerCase();
+        applyFilters();
+      }
+
+
+      // ----------------------------------------------------------
+      // showNoResults(show)
+      // Shows or hides the "no results" message paragraph.
+      // Called by applyFilters() with true if visible count is 0.
+      // ----------------------------------------------------------
+      function showNoResults(show) {
+        var msg = document.getElementById('no-results');
+        if (show) {
+          msg.style.display = 'block';
+        } else {
+          msg.style.display = 'none';
+        }
+      }
+
+
+      // ----------------------------------------------------------
+      // initFilters()
+      // Attaches all event listeners once the DOM is ready:
+      //   - click listener on each filter button -> setFilter()
+      //   - input listener on the search bar     -> setSearch()
+      // ----------------------------------------------------------
+      function initFilters() {
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            setFilter(this.dataset.filter);
+          });
+        });
+
+        // Search bar
+        var searchBar = document.getElementById('search-bar');
+        searchBar.addEventListener('input', function() {
+          setSearch(this.value);
+        });
+      }
+
+
+      // Run initFilters once the page has fully loaded
+      document.addEventListener('DOMContentLoaded', initFilters);
+
+    </script>
+
+  </body>
+</html>

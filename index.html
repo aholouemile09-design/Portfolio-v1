@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kossi Aholou — Developer Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  </head>
+  <body>
+
+    <!-- NAVBAR -->
+    <header>
+      <nav>
+        <div class="logo">Kossi Aholou</div>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero">
+      <div class="hero-inner">
+
+        <!-- Left: text -->
+        <div class="hero-text">
+          <span class="hero-tag">Electrical Engineer · Career Transition → ML Engineering</span>
+          <h1>Kossi Edem Emile Aholou</h1>
+          <p>
+            Electrical Engineer in transition to Machine Learning &amp; Software Development<br>
+            Edmonton, Alberta · Bilingual FR/EN
+          </p>
+          <div class="hero-buttons">
+            <a href="projects.html" class="btn-light">View Projects</a>
+            <a href="about.html" class="btn-ghost">About Me</a>
+          </div>
+        </div>
+
+        <!-- Right: code card visual -->
+        <div class="hero-visual">
+          <div class="code-card">
+            <span class="cc-comment">// kossi.js</span><br>
+            <span class="cc-keyword">const</span> <span class="cc-bracket">developer</span> = {<br>
+            &nbsp;&nbsp;<span class="cc-prop">name</span>: <span class="cc-string">'Kossi Aholou'</span>,<br>
+            &nbsp;&nbsp;<span class="cc-prop">background</span>: <span class="cc-string">'Electrical Eng.'</span>,<br>
+            &nbsp;&nbsp;<span class="cc-prop">goal</span>: <span class="cc-string">'ML Engineer'</span>,<br>
+            &nbsp;&nbsp;<span class="cc-prop">stack</span>: [<span class="cc-string">'Python'</span>, <span class="cc-string">'JS'</span>,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cc-string">'AI/ML'</span>],<br>
+            &nbsp;&nbsp;<span class="cc-prop">status</span>: <span class="cc-string">'In Transition'</span><br>
+            <span class="cc-bracket">};</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <span class="stat-number">5+</span>
+        <span class="stat-label">Years of Experience</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">2</span>
+        <span class="stat-label">Degrees</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">FR/EN</span>
+        <span class="stat-label">Bilingual</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">BSc</span>
+        <span class="stat-label">In Progress · AI/ML Minor</span>
+      </div>
+    </div>
+
+    <!-- FEATURED PROJECTS -->
+    <section id="projects">
+      <h2>Featured Projects</h2>
+
+      <div class="projects-grid-home">
+
+        <!-- CARD 1 -->
+        <div class="project-card" data-tech="react">
+          <div class="card-image">
+            <span class="card-image-label">React</span>
+          </div>
+          <div class="card-info">
+            <h3>E-Commerce Dashboard</h3>
+            <p>A responsive admin dashboard with real-time sales charts, inventory management, and user authentication.</p>
+            <div class="tech-stack">
+              <span>React</span>
+              <span>CSS</span>
+            </div>
+            <a href="projects.html" class="card-link">View Projects →</a>
+          </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="project-card" data-tech="javascript">
+          <div class="card-image">
+            <span class="card-image-label">JavaScript</span>
+          </div>
+          <div class="card-info">
+            <h3>Interactive Quiz App</h3>
+            <p>A browser-based quiz with multiple categories, timers, and real-time score tracking — pure vanilla JavaScript.</p>
+            <div class="tech-stack">
+              <span>JavaScript</span>
+              <span>HTML</span>
+            </div>
+            <a href="projects.html" class="card-link">View Projects →</a>
+          </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="project-card" data-tech="python">
+          <div class="card-image">
+            <span class="card-image-label">Python</span>
+          </div>
+          <div class="card-info">
+            <h3>Data Pipeline Automation</h3>
+            <p>A Python script that automates extraction, transformation, and loading of CSV datasets into a PostgreSQL database.</p>
+            <div class="tech-stack">
+              <span>Python</span>
+              <span>PostgreSQL</span>
+            </div>
+            <a href="projects.html" class="card-link">View Projects →</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="view-all-link">
+        <a href="projects.html">View all projects →</a>
+      </div>
+
+    </section>
+
+    <!-- ABOUT PREVIEW -->
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="preview-section">
+        <p>
+          Electrical engineer from Lomé, Togo, now based in Edmonton, Alberta, in active
+          career transition toward Machine Learning Engineering. With a Master's-level
+          background in Electrical and Computer Engineering Technology and 5+ years of
+          project management experience, I am building the computing and AI/ML foundation
+          needed to work at the intersection of engineering and intelligent systems.
+        </p>
+        <a href="about.html" class="btn">About me</a>
+      </div>
+    </section>
+
+    <!-- CONTACT PREVIEW -->
+    <section id="contact">
+      <h2>Get in Touch</h2>
+      <div class="preview-section">
+        <p>
+          Open to internships, collaborations, and interesting projects.
+          Reach out via the contact form or connect on LinkedIn.
+        </p>
+        <a href="contact.html" class="btn">Contact me</a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>
+        <a href="#" title="GitHub"><i class="fa-brands fa-github"></i> GitHub</a>
+        &nbsp;|&nbsp;
+        <a href="https://www.linkedin.com/in/kossi-edem-emile-d-aholou-2023a5194/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      </p>
+    </footer>
+
+  </body>
+</html>

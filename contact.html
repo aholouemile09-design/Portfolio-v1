@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio — Contact</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  </head>
+  <body>
+
+    <!-- NAVBAR -->
+    <header>
+      <nav>
+        <div class="logo">Kossi Aholou</div>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section id="contact-hero">
+      <h1>Contact</h1>
+      <p>Get in touch — I would love to hear from you</p>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact-section" class="section">
+      <div class="container">
+        <h2 class="section-title">Send a Message</h2>
+
+        <!--
+          Form structure used by Script 3 (Unit 5):
+          - id="contact-form"          JS attaches listeners to this form
+          - id="name-field"            validated by validateName()
+          - id="email-field"           validated by validateEmail() using EMAIL_REGEX
+          - id="message-field"         validated by validateMessage()
+          - id="name-feedback"         showFeedback() writes here (green/red message)
+          - id="email-feedback"        showFeedback() writes here
+          - id="message-feedback"      showFeedback() writes here
+          - id="message-counter"       shows "X / 20 min characters"
+          - id="submit-btn"            disabled until all fields are valid
+        -->
+        <form id="contact-form" novalidate>
+
+          <!-- NAME FIELD -->
+          <label for="name-field">Name</label>
+          <input
+            type="text"
+            id="name-field"
+            name="name"
+            placeholder="Your full name"
+            autocomplete="name"
+          />
+          <span id="name-feedback" class="feedback"></span>
+
+          <!-- EMAIL FIELD -->
+          <label for="email-field">Email</label>
+          <input
+            type="email"
+            id="email-field"
+            name="email"
+            placeholder="your@email.com"
+            autocomplete="email"
+          />
+          <span id="email-feedback" class="feedback"></span>
+
+          <!-- MESSAGE FIELD -->
+          <label for="message-field">Message</label>
+          <textarea
+            id="message-field"
+            name="message"
+            rows="6"
+            placeholder="Write your message here (minimum 20 characters)"
+          ></textarea>
+          <span id="message-counter" class="char-counter">0 / 20 min characters</span>
+          <span id="message-feedback" class="feedback"></span>
+
+          <!-- SUBMIT BUTTON — disabled by default, enabled by JS when all fields valid -->
+          <button type="submit" id="submit-btn" disabled>Send Message</button>
+
+        </form>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>
+        <a href="#" title="GitHub"><i class="fa-brands fa-github"></i> GitHub</a>
+        &nbsp;|&nbsp;
+        <a href="https://www.linkedin.com/in/kossi-edem-emile-d-aholou-2023a5194/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      </p>
+    </footer>
+
+    <!-- ============================================================
+         SCRIPT 3 — Contact Form with Real-Time Validation
+         Unit 5 — COMP266 — Kossi Emile Aholou
+         Original work.
+         Validates the name, email, and message fields in real time
+         as the user types. The submit button stays disabled until
+         all three fields pass their validation rules.
+         Uses a regular expression to validate the email format.
+         ============================================================ -->
+    <script>
+
+      // ----------------------------------------------------------
+      // GLOBAL OBJECT — formState
+      // Single source of truth for the validity of all three fields.
+      // Each property starts as false and is updated by the
+      // corresponding validate function as the user types.
+      // ----------------------------------------------------------
+      const formState = {
+        nameValid:    false,
+        emailValid:   false,
+        messageValid: false
+      };
+
+      // ----------------------------------------------------------
+      // CONSTANTS
+      // EMAIL_REGEX  : regular expression that matches a valid email
+      //   ^           start of string
+      //   [^\s@]+     one or more characters that are NOT a space or @
+      //   @           the @ symbol
+      //   [^\s@]+     the domain name (no spaces or @)
+      //   \.          a literal dot
+      //   [^\s@]+     the extension (.com, .ca, etc.)
+      //   $           end of string
+      // MIN_NAME_LEN : minimum number of characters for the name field
+      // MIN_MSG_LEN  : minimum number of characters for the message field
+      // ----------------------------------------------------------
+      const EMAIL_REGEX  = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const MIN_NAME_LEN = 2;
+      const MIN_MSG_LEN  = 20;
+
+
+      // ----------------------------------------------------------
+      // validateName()
+      // Triggered on every keystroke in the name field.
+      // Trims the value and checks that its length is at least
+      // MIN_NAME_LEN characters. Updates formState.nameValid,
+      // calls showFeedback() to display the result, and calls
+      // updateSubmitButton() to reflect the new overall state.
+      // ----------------------------------------------------------
+      function validateName() {
+        var value = document.getElementById('name-field').value.trim();
+        var isValid = value.length >= MIN_NAME_LEN;
+
+        formState.nameValid = isValid;
+
+        if (isValid) {
+          showFeedback('name-feedback', true, 'Name looks good');
+        } else {
+          showFeedback('name-feedback', false, 'Name must be at least 2 characters');
+        }
+
+        updateSubmitButton();
+      }
+
+
+      // ----------------------------------------------------------
+      // validateEmail()
+      // Triggered on every keystroke in the email field.
+      // Trims the value and tests it against EMAIL_REGEX.
+      // A valid email must contain characters, an @, a domain,
+      // a dot, and an extension — with no spaces anywhere.
+      // Updates formState.emailValid and gives the user feedback.
+      // ----------------------------------------------------------
+      function validateEmail() {
+        var value = document.getElementById('email-field').value.trim();
+        var isValid = EMAIL_REGEX.test(value);
+
+        formState.emailValid = isValid;
+
+        if (isValid) {
+          showFeedback('email-feedback', true, 'Email is valid');
+        } else {
+          showFeedback('email-feedback', false, 'Enter a valid email address (e.g. name@example.com)');
+        }
+
+        updateSubmitButton();
+      }
+
+
+      // ----------------------------------------------------------
+      // validateMessage()
+      // Triggered on every keystroke in the message textarea.
+      // Counts the current characters and updates the counter
+      // display (e.g. "14 / 20 min characters").
+      // Checks that the length reaches MIN_MSG_LEN before marking
+      // the message as valid. Updates formState.messageValid.
+      // ----------------------------------------------------------
+      function validateMessage() {
+        var value = document.getElementById('message-field').value.trim();
+        var count = value.length;
+        var isValid = count >= MIN_MSG_LEN;
+
+        // Update the live character counter below the textarea
+        document.getElementById('message-counter').textContent =
+          count + ' / ' + MIN_MSG_LEN + ' min characters';
+
+        formState.messageValid = isValid;
+
+        if (isValid) {
+          showFeedback('message-feedback', true, 'Message is long enough');
+        } else {
+          showFeedback('message-feedback', false, 'Message is too short (minimum 20 characters)');
+        }
+
+        updateSubmitButton();
+      }
+
+
+      // ----------------------------------------------------------
+      // showFeedback(feedbackId, isValid, message)
+      // Writes a short text message below the field to let the
+      // user know whether their input is accepted or not.
+      // Adds the CSS class 'valid' (green) or 'invalid' (red)
+      // to the span so the colour reflects the result.
+      // Using text (not just colour) makes feedback accessible
+      // to screen readers and colour-blind users.
+      // ----------------------------------------------------------
+      function showFeedback(feedbackId, isValid, message) {
+        var span = document.getElementById(feedbackId);
+        span.textContent = message;
+
+        // Reset both classes, then apply the correct one
+        span.classList.remove('valid', 'invalid');
+        if (isValid) {
+          span.classList.add('valid');
+        } else {
+          span.classList.add('invalid');
+        }
+      }
+
+
+      // ----------------------------------------------------------
+      // updateSubmitButton()
+      // Checks whether ALL three fields are currently valid by
+      // reading formState. If all three are true, it enables the
+      // submit button. Otherwise it keeps the button disabled.
+      // This prevents the form from being submitted with errors.
+      // ----------------------------------------------------------
+      function updateSubmitButton() {
+        var submitBtn = document.getElementById('submit-btn');
+
+        if (formState.nameValid && formState.emailValid && formState.messageValid) {
+          submitBtn.disabled = false;
+        } else {
+          submitBtn.disabled = true;
+        }
+      }
+
+
+      // ----------------------------------------------------------
+      // initForm()
+      // Attaches all event listeners once the DOM is fully loaded:
+      //   - input on #name-field    -> validateName()
+      //   - input on #email-field   -> validateEmail()
+      //   - input on #message-field -> validateMessage()
+      // Using 'input' fires on every keystroke, giving real-time
+      // feedback as the user types rather than waiting for submit.
+      // ----------------------------------------------------------
+      function initForm() {
+        document.getElementById('name-field')
+          .addEventListener('input', validateName);
+
+        document.getElementById('email-field')
+          .addEventListener('input', validateEmail);
+
+        document.getElementById('message-field')
+          .addEventListener('input', validateMessage);
+      }
+
+
+      // Run initForm once the page has fully loaded
+      document.addEventListener('DOMContentLoaded', initForm);
+
+    </script>
+
+  </body>
+</html>

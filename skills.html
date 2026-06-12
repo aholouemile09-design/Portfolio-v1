@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio — Skills</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  </head>
+  <body>
+
+    <!-- NAVBAR -->
+    <header>
+      <nav>
+        <div class="logo">Kossi Aholou</div>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section id="skills-hero">
+      <h1>Skills</h1>
+      <p>Technologies and tools I work with</p>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <!--
+      Structure used by Script 1 (Unit 5):
+      - #skills-section is watched by IntersectionObserver
+      - .skills-container is where JS injects the rendered skill bars
+      - Each bar will be a .skill-bar with data-level="80" etc.
+      - JS groups skills by category (Frontend / Backend / Tools)
+      and renders each group as a sub-section
+    -->
+    <section id="skills-section" class="section">
+      <div class="container">
+        <h2 class="section-title">Technical Skills</h2>
+
+        <!-- JS will inject skill groups and bars here -->
+        <div id="skills-container" class="skills-container">
+
+          <!-- PLACEHOLDER — will be replaced by Script 1 -->
+          <!-- Example of what JS will generate:
+
+          <div class="skills-group">
+            <h3 class="skills-category">Frontend</h3>
+            <div class="skill-item">
+              <div class="skill-label">
+                <span class="skill-name">JavaScript</span>
+                <span class="skill-percent">80%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-bar" data-level="80" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+
+          -->
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>
+        <a href="#" title="GitHub"><i class="fa-brands fa-github"></i> GitHub</a>
+        &nbsp;|&nbsp;
+        <a href="https://www.linkedin.com/in/kossi-edem-emile-d-aholou-2023a5194/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      </p>
+    </footer>
+
+    <!-- ============================================================
+         SCRIPT 1 — Dynamic Skills Section with Animated Progress Bars
+         Unit 5 — COMP266 — Kossi Emile Aholou
+         Original work.
+         Reads a global array of skill objects, groups them by category,
+         renders the HTML dynamically using a class, then animates each
+         bar from 0% to its target width when the section scrolls into
+         view (using the IntersectionObserver API).
+         ============================================================ -->
+    <script>
+
+      // ----------------------------------------------------------
+      // GLOBAL ARRAY — skills
+      // Each element is an object with three properties:
+      //   name     : display name of the skill
+      //   level    : proficiency as a percentage (0–100)
+      //   category : used to group skills ('Frontend', 'Backend', 'Tools')
+      // This array is the single data source for the entire section.
+      // ----------------------------------------------------------
+      const skills = [
+        { name: 'JavaScript', level: 80, category: 'Frontend' },
+        { name: 'React',      level: 75, category: 'Frontend' },
+        { name: 'HTML & CSS', level: 90, category: 'Frontend' },
+        { name: 'Python',     level: 70, category: 'Backend'  },
+        { name: 'Node.js',    level: 60, category: 'Backend'  },
+        { name: 'SQL',        level: 65, category: 'Backend'  },
+        { name: 'Git',        level: 80, category: 'Tools'    },
+        { name: 'VS Code',    level: 85, category: 'Tools'    }
+      ];
+
+
+      // ----------------------------------------------------------
+      // CLASS — Skill
+      // Represents a single skill and knows how to render itself
+      // as an HTML string. Using a class keeps the data (name,
+      // level, category) and the rendering logic together in one
+      // place, following the principle of encapsulation.
+      // ----------------------------------------------------------
+      class Skill {
+
+        // constructor stores the three properties on the object
+        constructor(name, level, category) {
+          this.name     = name;
+          this.level    = level;
+          this.category = category;
+        }
+
+        // render() returns the HTML block for one skill bar.
+        // The bar starts at width: 0% and is animated by animateBar().
+        // data-level stores the target width so animateBar() can read it.
+        render() {
+          return (
+            '<div class="skill-item">' +
+              '<div class="skill-label">' +
+                '<span class="skill-name">'    + this.name  + '</span>' +
+                '<span class="skill-percent">' + this.level + '%</span>' +
+              '</div>' +
+              '<div class="skill-track">' +
+                '<div class="skill-bar" data-level="' + this.level + '" style="width: 0%"></div>' +
+              '</div>' +
+            '</div>'
+          );
+        }
+      }
+
+
+      // ----------------------------------------------------------
+      // groupByCategory(skillsArray)
+      // Takes the global skills array and returns an object where
+      // each key is a category name and each value is an array of
+      // skill objects belonging to that category.
+      // Example result:
+      //   { Frontend: [...], Backend: [...], Tools: [...] }
+      // ----------------------------------------------------------
+      function groupByCategory(skillsArray) {
+        var grouped = {};
+
+        // Loop over every skill and add it to the right category bucket
+        skillsArray.forEach(function(skill) {
+          // If this category key does not exist yet, create it
+          if (!grouped[skill.category]) {
+            grouped[skill.category] = [];
+          }
+          // Push the skill into its category array
+          grouped[skill.category].push(skill);
+        });
+
+        return grouped;
+      }
+
+
+      // ----------------------------------------------------------
+      // renderSkills()
+      // Calls groupByCategory() to organise the data, then loops
+      // over each category and each skill inside it.
+      // For each skill it creates a Skill object and calls render()
+      // to get the HTML string, then injects everything into
+      // the #skills-container div in the page.
+      // ----------------------------------------------------------
+      function renderSkills() {
+        var container = document.getElementById('skills-container');
+        var grouped   = groupByCategory(skills);
+        var html      = '';
+
+        // Loop over each category (Frontend, Backend, Tools)
+        Object.keys(grouped).forEach(function(category) {
+          html += '<div class="skills-group">';
+          html += '<h3 class="skills-category">' + category + '</h3>';
+
+          // Loop over each skill in this category
+          grouped[category].forEach(function(skillData) {
+            var skillObj = new Skill(skillData.name, skillData.level, skillData.category);
+            html += skillObj.render();
+          });
+
+          html += '</div>';
+        });
+
+        // Inject all the generated HTML into the container at once
+        container.innerHTML = html;
+      }
+
+
+      // ----------------------------------------------------------
+      // animateBar(bar)
+      // Takes a single .skill-bar element and animates its width
+      // from 0% to the value stored in its data-level attribute.
+      // The CSS transition (defined in style.css) handles the
+      // smooth growing animation — JS just sets the final width.
+      // ----------------------------------------------------------
+      function animateBar(bar) {
+        var targetLevel = bar.getAttribute('data-level');
+        bar.style.width = targetLevel + '%';
+      }
+
+
+      // ----------------------------------------------------------
+      // initObserver()
+      // Creates an IntersectionObserver that watches #skills-section.
+      // When the section becomes at least 20% visible in the viewport,
+      // the observer fires its callback, which animates all bars
+      // by calling animateBar() on each one.
+      // observer.unobserve() stops watching after the first trigger
+      // so the animation only plays once per page load.
+      // ----------------------------------------------------------
+      function initObserver() {
+        var section = document.getElementById('skills-section');
+
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+
+            // Only animate when the section is actually entering the screen
+            if (entry.isIntersecting) {
+              var bars = document.querySelectorAll('.skill-bar');
+
+              // Animate every bar to its target width
+              bars.forEach(function(bar) {
+                animateBar(bar);
+              });
+
+              // Stop observing — we only want the animation to run once
+              observer.unobserve(section);
+            }
+          });
+        }, { threshold: 0.2 }); // fire when 20% of the section is visible
+
+        observer.observe(section);
+      }
+
+
+      // ----------------------------------------------------------
+      // Page initialisation
+      // Wait for the DOM to be fully loaded, then:
+      //   1. renderSkills() — build and inject the HTML
+      //   2. initObserver() — set up the scroll animation
+      // renderSkills() must run first so the bars exist in the DOM
+      // before initObserver() tries to watch them.
+      // ----------------------------------------------------------
+      document.addEventListener('DOMContentLoaded', function() {
+        renderSkills();
+        initObserver();
+      });
+
+    </script>
+
+  </body>
+</html>

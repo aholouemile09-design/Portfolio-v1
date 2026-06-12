@@ -1,0 +1,29 @@
+# macOS system files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V8
+.Trashes
+
+# ZIP archives (submitted separately, not part of the repo)
+*.zip
+
+# Unit instruction files and sample documents (professor-provided, not our code)
+Unit\ 3\ instructions.docx
+Unit\ 4\ -\ learning\ diaries.docx
+Unit\ 5\ Diary\ steps.docx
+Unit\ 5\ Diary\ steps.pdf
+Unit\ 5\ Instructions.docx
+Analysis\ Report\ Sample\ 1\ &\ 2.docx
+MEMO_Session_Travail.md
+sample1_corrected.html
+sample2_corrected.html
+zi66dIRb
+
+# Node modules (if jQuery is ever installed via npm)
+node_modules/
+
+# Editor / OS junk
+Thumbs.db
+*.swp
+*.swo
