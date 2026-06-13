@@ -6,6 +6,7 @@
     <title>My Portfolio — Resume</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="scripts/jquery-ui.min.css">
   </head>
   <body>
 
@@ -31,7 +32,7 @@
     </section>
 
     <!-- RESUME BODY -->
-    <section id="resume-section" class="section">
+    <section id="resume-section" class="section fade-in-section">
       <div class="container">
 
         <!-- HEADER BLOCK -->
@@ -331,6 +332,76 @@
         <a href="https://www.linkedin.com/in/kossi-edem-emile-d-aholou-2023a5194/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
       </p>
     </footer>
+
+    <!-- jQuery 3.7.1 + jQuery UI 1.13.3 (local copies) -->
+    <script src="scripts/jquery-3.7.1.min.js"></script>
+    <script src="scripts/jquery-ui.min.js"></script>
+    <script src="scripts/main.js"></script>
+
+    <!-- ============================================================
+         FEATURE 5 — Resume Accordion (jQuery UI)
+         Unit 6 — COMP266 — Kossi Emile Aholou
+
+         Wraps the resume sections (Education, Experience, Skills,
+         Projects, Volunteer, Languages, Certifications) into a
+         jQuery UI accordion. Each section heading becomes a
+         clickable panel header; clicking it expands that section
+         and collapses the others.
+
+         jQuery UI .accordion() handles all keyboard navigation
+         and ARIA attributes automatically — fully accessible
+         without any extra code.
+
+         Persona: Lucas Martin (Persona 3, Full-Stack Developer)
+         and Maxwell Adana (Persona 6, Recruiter) can jump
+         directly to the section they care about instead of
+         scrolling through the full CV.
+
+         Source: jQuery UI Accordion — https://jqueryui.com/accordion/
+    ============================================================ -->
+    <script>
+      $(document).ready(function () {
+
+        // Remove the decorative <hr> dividers — the accordion
+        // provides its own visual separation between panels.
+        $('#resume-section .container').find('hr.resume-divider').remove();
+
+        // Collect all resume blocks
+        var $blocks = $('#resume-section .container .resume-block');
+
+        // For each block: pull out its h3 title, then rewrap
+        // the content so jQuery UI accordion can work with it.
+        $blocks.each(function () {
+          var $block  = $(this);
+          var $title  = $block.find('h3.resume-section-title');
+          var heading = $title.text();
+
+          // Remove the h3 from inside the block content
+          $title.remove();
+
+          // Wrap remaining content in a panel div
+          $block.wrapInner('<div class="accordion-panel"></div>');
+
+          // Prepend the heading that jQuery UI uses as the handle
+          $block.prepend('<h3>' + heading + '</h3>');
+        });
+
+        // Wrap all resume-blocks in a single container
+        $blocks.wrapAll('<div id="resume-accordion"></div>');
+
+        // Initialise jQuery UI accordion
+        // collapsible: true  → allows all panels to be closed
+        // active: 0          → Education panel open by default
+        // heightStyle: content → each panel sizes to its own content
+        $('#resume-accordion').accordion({
+          collapsible: true,
+          active: 0,
+          heightStyle: 'content',
+          animate: 300
+        });
+
+      });
+    </script>
 
   </body>
 </html>

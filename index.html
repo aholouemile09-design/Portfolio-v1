@@ -6,6 +6,7 @@
     <title>Kossi Aholou — Developer Portfolio</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="scripts/jquery-ui.min.css">
   </head>
   <body>
 
@@ -25,7 +26,7 @@
     </header>
 
     <!-- HERO SECTION -->
-    <section id="hero">
+    <section id="hero" class="fade-in-section">
       <div class="hero-inner">
 
         <!-- Left: text -->
@@ -61,13 +62,18 @@
     </section>
 
     <!-- STATS BAR -->
+    <!--
+      Feature 2 (Unit 6 jQuery): data-target sets the number the counter
+      animates to. data-suffix adds a text suffix (e.g. "+") after the number.
+      Elements without data-target are left static (non-numeric values).
+    -->
     <div class="stats-bar">
       <div class="stat-item">
-        <span class="stat-number">5+</span>
+        <span class="stat-number" data-target="5" data-suffix="+">5+</span>
         <span class="stat-label">Years of Experience</span>
       </div>
       <div class="stat-item">
-        <span class="stat-number">2</span>
+        <span class="stat-number" data-target="2" data-suffix="">2</span>
         <span class="stat-label">Degrees</span>
       </div>
       <div class="stat-item">
@@ -177,6 +183,78 @@
         <a href="https://www.linkedin.com/in/kossi-edem-emile-d-aholou-2023a5194/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
       </p>
     </footer>
+
+    <!-- jQuery 3.7.1 + jQuery UI 1.13.3 (local copies) -->
+    <script src="scripts/jquery-3.7.1.min.js"></script>
+    <script src="scripts/jquery-ui.min.js"></script>
+    <script src="scripts/main.js"></script>
+
+    <!-- ============================================================
+         FEATURE 2 — Animated Statistics Counter
+         Unit 6 — COMP266 — Kossi Emile Aholou
+
+         Each .stat-number with a data-target attribute animates
+         from 0 to its target value using jQuery's $({}).animate()
+         with a step callback. A data-suffix (e.g. "+") is appended
+         after the number.
+
+         Triggered once when the stats bar enters the viewport,
+         using a scroll listener with a 'counted' flag to prevent
+         the animation from firing more than once.
+
+         Persona: Maxwell Adana (Persona 6, Recruiter) gets an
+         immediate visual impression of experience and credentials
+         without reading any text.
+
+         Source: jQuery .animate() API — https://api.jquery.com/animate/
+    ============================================================ -->
+    <script>
+      $(document).ready(function () {
+
+        var counted = false; // flag: run animation only once
+
+        function runCounters() {
+          // Only animate elements that have a data-target attribute
+          $('.stat-number[data-target]').each(function () {
+            var $el     = $(this);
+            var target  = parseInt($el.attr('data-target'), 10);
+            var suffix  = $el.attr('data-suffix') || '';
+
+            // Animate a plain object from { val: 0 } to { val: target }
+            // The 'step' callback fires on every animation frame and
+            // writes the current integer value into the element.
+            $({ val: 0 }).animate(
+              { val: target },
+              {
+                duration: 1500,
+                easing: 'swing',
+                step: function () {
+                  $el.text(Math.ceil(this.val) + suffix);
+                },
+                complete: function () {
+                  // Ensure the final value is exact
+                  $el.text(target + suffix);
+                }
+              }
+            );
+          });
+        }
+
+        // Trigger when the stats bar scrolls into view
+        $(window).on('scroll.counter', function () {
+          if (counted) return;
+
+          var statsTop    = $('.stats-bar').offset().top;
+          var windowBottom = $(window).scrollTop() + $(window).height();
+
+          if (windowBottom > statsTop + 50) {
+            counted = true;
+            runCounters();
+            $(window).off('scroll.counter'); // remove listener after first run
+          }
+        }).trigger('scroll'); // check immediately on page load
+      });
+    </script>
 
   </body>
 </html>

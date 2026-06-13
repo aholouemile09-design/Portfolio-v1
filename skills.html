@@ -6,6 +6,7 @@
     <title>My Portfolio — Skills</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="scripts/jquery-ui.min.css">
   </head>
   <body>
 
@@ -39,7 +40,7 @@
       - JS groups skills by category (Frontend / Backend / Tools)
       and renders each group as a sub-section
     -->
-    <section id="skills-section" class="section">
+    <section id="skills-section" class="section fade-in-section">
       <div class="container">
         <h2 class="section-title">Technical Skills</h2>
 
@@ -96,15 +97,18 @@
       //   category : used to group skills ('Frontend', 'Backend', 'Tools')
       // This array is the single data source for the entire section.
       // ----------------------------------------------------------
+      // Unit 6 addition: each skill now includes a 'tooltip' property.
+      // jQuery UI .tooltip() (Feature 7) reads the title attribute on
+      // each skill bar and displays it as a styled hover popup.
       const skills = [
-        { name: 'JavaScript', level: 80, category: 'Frontend' },
-        { name: 'React',      level: 75, category: 'Frontend' },
-        { name: 'HTML & CSS', level: 90, category: 'Frontend' },
-        { name: 'Python',     level: 70, category: 'Backend'  },
-        { name: 'Node.js',    level: 60, category: 'Backend'  },
-        { name: 'SQL',        level: 65, category: 'Backend'  },
-        { name: 'Git',        level: 80, category: 'Tools'    },
-        { name: 'VS Code',    level: 85, category: 'Tools'    }
+        { name: 'JavaScript', level: 80, category: 'Frontend', tooltip: 'Vanilla JS — DOM, events, classes, regex, Fetch API' },
+        { name: 'React',      level: 75, category: 'Frontend', tooltip: 'Components, hooks (useState, useEffect), JSX' },
+        { name: 'HTML & CSS', level: 90, category: 'Frontend', tooltip: 'Semantic HTML5, Flexbox, Grid, responsive design' },
+        { name: 'Python',     level: 70, category: 'Backend',  tooltip: 'Data structures, OOP, scripting, NumPy basics' },
+        { name: 'Node.js',    level: 60, category: 'Backend',  tooltip: 'Express basics, REST API, npm ecosystem' },
+        { name: 'SQL',        level: 65, category: 'Backend',  tooltip: 'SELECT, JOIN, GROUP BY, subqueries — PostgreSQL & MySQL' },
+        { name: 'Git',        level: 80, category: 'Tools',    tooltip: 'Branching, merging, pull requests, GitHub' },
+        { name: 'VS Code',    level: 85, category: 'Tools',    tooltip: 'Extensions, debugging, integrated terminal' }
       ];
 
 
@@ -127,9 +131,11 @@
         // render() returns the HTML block for one skill bar.
         // The bar starts at width: 0% and is animated by animateBar().
         // data-level stores the target width so animateBar() can read it.
+        // Unit 6: title attribute added to .skill-item so jQuery UI
+        // .tooltip() can display the skill description on hover.
         render() {
           return (
-            '<div class="skill-item">' +
+            '<div class="skill-item" title="' + this.tooltip + '">' +
               '<div class="skill-label">' +
                 '<span class="skill-name">'    + this.name  + '</span>' +
                 '<span class="skill-percent">' + this.level + '%</span>' +
@@ -260,6 +266,59 @@
         initObserver();
       });
 
+    </script>
+
+    <!-- jQuery 3.7.1 + jQuery UI 1.13.3 (local copies) -->
+    <script src="scripts/jquery-3.7.1.min.js"></script>
+    <script src="scripts/jquery-ui.min.js"></script>
+    <script src="scripts/main.js"></script>
+
+    <!-- ============================================================
+         FEATURE 7 — Tooltips on Skill Items (jQuery UI)
+         Unit 6 — COMP266 — Kossi Emile Aholou
+
+         After the Unit 5 renderSkills() function builds the skill
+         bars and injects them into the DOM, jQuery UI .tooltip()
+         is initialised on the #skills-container. It reads the
+         title attribute on each .skill-item and displays it as a
+         styled popup on hover.
+
+         jQuery UI handles positioning, fade animation, and ARIA
+         automatically — tooltip is announced to screen readers
+         without any extra work.
+
+         Persona: Amina Okafor (Persona 2, Front-End Developer)
+         and Lucas Martin (Persona 3, Full-Stack Developer) hover
+         over skill bars to get precise details about what each
+         technology covers, beyond just the percentage.
+
+         Source: jQuery UI Tooltip — https://jqueryui.com/tooltip/
+    ============================================================ -->
+    <script>
+      $(document).ready(function () {
+
+        // Wait for renderSkills() (Unit 5) to inject .skill-item
+        // elements before initialising tooltips.
+        // renderSkills() is called on DOMContentLoaded, which fires
+        // before jQuery's document.ready completes — safe to call here.
+
+        $('#skills-container').tooltip({
+          // 'items' targets any element with a title attribute
+          // inside the container (our .skill-item elements)
+          items: '[title]',
+
+          // show/hide with a short fade for a polished feel
+          show: { effect: 'fadeIn',  duration: 150 },
+          hide: { effect: 'fadeOut', duration: 100 },
+
+          // Position tooltip above the skill bar, centred
+          position: {
+            my: 'center bottom-12',
+            at: 'center top'
+          }
+        });
+
+      });
     </script>
 
   </body>
