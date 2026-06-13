@@ -10,8 +10,22 @@ body {
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 16px;
     line-height: 1.6;
-    background-color: #f5f5f5;
     color: #333333;
+
+    /* Background image — code on screen (Unsplash, test version)
+       A white semi-transparent overlay (91% opacity) is layered on top
+       so the image acts as a subtle watermark without affecting readability.
+       background-attachment: fixed keeps the image fixed while
+       the content scrolls over it.
+       Source: https://unsplash.com/photos/turned-on-macbook-pro-beside-gray-mug-4hbJ-eymZ0o
+    */
+    background-color: #f5f5f5;
+    background-image:
+        linear-gradient(rgba(245, 245, 245, 0.91), rgba(245, 245, 245, 0.91)),
+        url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1920&q=80');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 /* ===== TYPOGRAPHIE ===== */
@@ -51,7 +65,8 @@ a:hover {
 
 /* ===== NAVIGATION ===== */
 nav {
-    background-color: #333333;
+    background: linear-gradient(135deg, #1a1a2e 0%, #2d2d4e 100%);
+    border-bottom: 3px solid #d43434;
     padding: 14px 24px;
 }
 nav ul {
@@ -195,20 +210,21 @@ footer a:hover {
 
 /* ===== HERO SECTION ===== */
 .hero, #hero {
-    background-color: #e8edf2;
+    background: linear-gradient(to bottom, #1a1a2e 0%, rgba(26,26,46,0.6) 50%, transparent 100%);
     text-align: center;
     padding: 80px 20px;
 }
 
 .hero h1, #hero h1 {
     font-size: 2.5rem;
-    color: #1a1a2e;
+    color: #ffffff;
     margin-bottom: 16px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
 .hero p, #hero p {
     font-size: 1.1rem;
-    color: #555555;
+    color: rgba(255,255,255,0.85);
     margin-bottom: 32px;
 }
 
@@ -343,14 +359,15 @@ nav {
 
 /* ===== PROJECTS HERO & FILTER BAR (Unit 4) ===== */
 #projects-hero {
-    background-color: #e8edf2;
+    background: linear-gradient(to bottom, #1a1a2e 0%, rgba(26,26,46,0.6) 50%, transparent 100%);
     text-align: center;
     padding: 60px 20px 40px;
 }
 
 #projects-hero h1 {
     font-size: 2.2rem;
-    color: #1a1a2e;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
     margin-bottom: 24px;
 }
 
@@ -427,19 +444,20 @@ nav {
 
 /* ===== SKILLS PAGE (Unit 5 — Script 1) ===== */
 #skills-hero {
-    background-color: #e8edf2;
+    background: linear-gradient(to bottom, #1a1a2e 0%, rgba(26,26,46,0.6) 50%, transparent 100%);
     text-align: center;
     padding: 60px 20px 40px;
 }
 
 #skills-hero h1 {
     font-size: 2.2rem;
-    color: #1a1a2e;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
     margin-bottom: 12px;
 }
 
 #skills-hero p {
-    color: #555555;
+    color: rgba(255,255,255,0.85);
     font-size: 1rem;
 }
 
@@ -489,19 +507,20 @@ nav {
 
 /* ===== CONTACT PAGE (Unit 5 — Script 3) ===== */
 #contact-hero {
-    background-color: #e8edf2;
+    background: linear-gradient(to bottom, #1a1a2e 0%, rgba(26,26,46,0.6) 50%, transparent 100%);
     text-align: center;
     padding: 60px 20px 40px;
 }
 
 #contact-hero h1 {
     font-size: 2.2rem;
-    color: #1a1a2e;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
     margin-bottom: 12px;
 }
 
 #contact-hero p {
-    color: #555555;
+    color: rgba(255,255,255,0.85);
     font-size: 1rem;
 }
 
@@ -512,19 +531,20 @@ nav {
 
 /* ===== ABOUT PAGE ===== */
 #about-hero {
-    background-color: #e8edf2;
+    background: linear-gradient(to bottom, #1a1a2e 0%, rgba(26,26,46,0.6) 50%, transparent 100%);
     text-align: center;
     padding: 60px 20px 40px;
 }
 
 #about-hero h1 {
     font-size: 2.2rem;
-    color: #1a1a2e;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
     margin-bottom: 12px;
 }
 
 #about-hero p {
-    color: #555555;
+    color: rgba(255,255,255,0.85);
     font-size: 1rem;
 }
 
@@ -694,19 +714,20 @@ nav {
 
 /* ===== RESUME PAGE ===== */
 #resume-hero {
-    background-color: #e8edf2;
+    background: linear-gradient(to bottom, #1a1a2e 0%, rgba(26,26,46,0.6) 50%, transparent 100%);
     text-align: center;
     padding: 60px 20px 40px;
 }
 
 #resume-hero h1 {
     font-size: 2.2rem;
-    color: #1a1a2e;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
     margin-bottom: 12px;
 }
 
 #resume-hero p {
-    color: #555555;
+    color: rgba(255,255,255,0.85);
     font-size: 1rem;
 }
 
@@ -844,7 +865,7 @@ nav {
 
 /* Tags */
 .resume-tag {
-    background-color: #e8edf2;
+    background: linear-gradient(to bottom, #1a1a2e 0%, rgba(26,26,46,0.6) 50%, transparent 100%);
     color: #1a1a2e;
     padding: 4px 12px;
     border-radius: 12px;
@@ -970,7 +991,7 @@ nav {
 }
 
 .btn-light:hover {
-    background-color: #e8edf2;
+    background: linear-gradient(to bottom, #1a1a2e 0%, rgba(26,26,46,0.6) 50%, transparent 100%);
     color: #1a1a2e;
     text-decoration: none;
 }
@@ -1186,8 +1207,8 @@ header {
 
 header.scrolled {
     padding: 0;
-    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
-    background-color: #1a1a2e;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, #12122a 0%, #1a1a2e 100%);
 }
 
 header.scrolled nav {
