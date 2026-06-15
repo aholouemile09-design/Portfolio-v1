@@ -1403,3 +1403,209 @@ header.scrolled nav {
 .home-about-tags span i {
     color: #d43434;
 }
+
+/* ============================================================
+   PROJECT DETAIL PAGES
+   Styles for individual project pages (project-*.html)
+   ============================================================ */
+
+/* Full-width hero with the project's image as background */
+.project-page-hero {
+    position: relative;
+    min-height: 340px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+.project-page-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-color: #1a1a2e; /* fallback */
+    filter: brightness(0.45);
+    z-index: 0;
+}
+
+.project-page-hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 48px 24px 40px;
+    color: #ffffff;
+    max-width: 860px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* "← All Projects" back link */
+.project-back-link {
+    display: inline-block;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    transition: color 0.2s;
+}
+.project-back-link:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* Tech badge on hero */
+.project-page-badge {
+    display: inline-block;
+    background-color: #d43434;
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 3px;
+    margin-bottom: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.project-page-hero-content h1 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    margin-bottom: 12px;
+}
+
+.project-page-hero-content > p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.6;
+    margin-bottom: 18px;
+    max-width: 600px;
+}
+
+/* Tech stack shown on hero (reuses .tech-stack) */
+.project-page-hero-content .tech-stack span {
+    background-color: rgba(255,255,255,0.12);
+    color: #ffffff;
+    border-color: rgba(255,255,255,0.3);
+}
+
+/* Project body section */
+.project-page-body {
+    padding: 56px 24px;
+}
+
+.project-page-body .container {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+/* "Coming soon" notice banner */
+.project-placeholder-notice {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    background-color: #fff8e1;
+    border: 1.5px solid #f0c040;
+    border-left: 5px solid #f0c040;
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin-bottom: 48px;
+}
+
+.placeholder-notice-icon {
+    font-size: 1.8rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.project-placeholder-notice h3 {
+    font-size: 1.05rem;
+    font-weight: bold;
+    color: #7a5f00;
+    margin-bottom: 6px;
+}
+
+.project-placeholder-notice p {
+    font-size: 0.9rem;
+    color: #8a6d00;
+    line-height: 1.55;
+    margin: 0;
+}
+
+/* Content sections grid */
+.project-page-sections {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
+
+.project-page-section {
+    border-bottom: 1px solid #e8e8ec;
+    padding-bottom: 36px;
+}
+
+.project-page-section:last-child {
+    border-bottom: none;
+}
+
+.project-page-section h2 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #1a1a2e;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 3px solid #d43434;
+    display: inline-block;
+}
+
+.project-page-section p,
+.project-page-section li {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.7;
+}
+
+.project-page-section ul {
+    padding-left: 20px;
+}
+
+/* Screenshot placeholder slots */
+.screenshot-placeholder-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.screenshot-slot {
+    background-color: #f2f2f7;
+    border: 2px dashed #c8c8d4;
+    border-radius: 8px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 0.82rem;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    padding: 16px;
+}
+
+/* Project link buttons */
+.project-page-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 8px;
+}
+
+/* Disabled state for future links */
+.btn-disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+}
