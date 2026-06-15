@@ -7,6 +7,7 @@
      2. Smooth Scroll              — $('a[href^="#"]') + animate scrollTop
      3. Back-to-Top Button         — fadeIn/fadeOut + animate scrollTop: 0
      4. Fade-In Sections on Scroll — $(window).scroll() + fadeIn()
+     5. Nav Active State           — window.location.pathname + addClass('active')
 
    Libraries used:
      - jQuery 3.7.1 (local copy: scripts/jquery-3.7.1.min.js)
@@ -133,5 +134,27 @@ $(document).ready(function () {
   $(window).scroll(function () {
     checkFadeIn();
   });
+
+
+  /* ----------------------------------------------------------
+     NAV ACTIVE STATE
+     Detects the current page filename from the URL and adds
+     the CSS class 'active' to the matching nav link.
+     Project detail pages (project-*.html) map to projects.html
+     so the Projects link stays highlighted on those pages.
+  ---------------------------------------------------------- */
+  var currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
+  // Map project detail pages to the Projects nav item
+  if (currentPage.indexOf('project-') === 0) {
+    currentPage = 'projects.html';
+  }
+
+  $('nav ul li a').each(function () {
+    if ($(this).attr('href') === currentPage) {
+      $(this).addClass('active');
+    }
+  });
+
 
 }); // end document.ready
