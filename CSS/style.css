@@ -1,3 +1,6 @@
+/* ===== GOOGLE FONTS — Inter ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 /* ===== BASE ===== */
 
 * {
@@ -7,9 +10,9 @@
 }
 
 body {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 16px;
-    line-height: 1.6;
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
     color: #333333;
 
     /* Background image — code on screen (Unsplash, test version)
@@ -31,15 +34,15 @@ body {
 /* ===== TYPOGRAPHIE ===== */
 
 h1, h2, h3 {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: inherit;
     color: #1a1a2e;
     margin-top: 24px;
     margin-bottom: 12px;
 }
 
-h1 { font-size: 2rem; }
-h2 { font-size: 1.5rem; }
-h3 { font-size: 1.2rem; }
+h1 { font-size: 2.4rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.3rem; }
 
 p {
     margin-bottom: 16px;
@@ -80,7 +83,7 @@ nav ul li {
 }
 nav ul li a {
     color: #ffffff;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: inherit;
     font-size: 0.95rem;
     font-weight: bold;
     text-decoration: none;
@@ -236,7 +239,7 @@ footer a:hover {
     text-decoration: none;
     border-radius: 4px;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: inherit;
 }
 
 .btn:hover {
@@ -313,10 +316,10 @@ footer a:hover {
 }
 
 .card-info p {
-    font-size: 0.88rem;
+    font-size: 0.97rem;
     color: #555555;
     margin-bottom: 14px;
-    line-height: 1.55;
+    line-height: 1.6;
 }
 
 .tech-stack {
@@ -332,7 +335,7 @@ footer a:hover {
     padding: 3px 10px;
     border-radius: 12px;
     font-size: 0.78rem;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: inherit;
 }
 
 /* ===== ABOUT & CONTACT PREVIEW ===== */
@@ -372,7 +375,7 @@ nav {
 
 .logo {
     color: #ffffff;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: inherit;
     font-size: 1.1rem;
     font-weight: bold;
     letter-spacing: 1px;
@@ -467,7 +470,7 @@ nav {
 #skills-hero {
     background: linear-gradient(to bottom, #1a1a2e 0%, rgba(26,26,46,0.6) 50%, transparent 100%);
     text-align: center;
-    padding: 60px 20px 40px;
+    padding: 52px 20px 12px;
 }
 
 #skills-hero h1 {
@@ -480,6 +483,14 @@ nav {
 #skills-hero p {
     color: rgba(255,255,255,0.85);
     font-size: 1rem;
+}
+
+.skills-section-intro {
+    max-width: 700px;
+    margin: 0 auto 36px;
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.7;
 }
 
 .skills-container {
@@ -506,8 +517,9 @@ nav {
 .skill-label {
     display: flex;
     justify-content: space-between;
-    font-size: 0.95rem;
-    margin-bottom: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 6px;
     color: #1a1a2e;
 }
 
@@ -524,6 +536,51 @@ nav {
     border-radius: 4px;
     width: 0%;
     transition: width 1s ease;
+}
+
+/* Currently Learning block on Skills page */
+.skills-learning {
+    max-width: 700px;
+    margin: 48px auto 0;
+    border-top: 2px solid #e8e8ec;
+    padding-top: 36px;
+}
+
+.skills-learning h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 6px;
+}
+
+.skills-learning-desc {
+    color: #666;
+    font-size: 0.97rem;
+    margin-bottom: 20px;
+}
+
+.skills-learning-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skills-learning-tags span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background-color: #f0f0f8;
+    border: 1px solid #d0d0e8;
+    color: #1a1a2e;
+    font-size: 0.92rem;
+    font-weight: 500;
+    padding: 7px 14px;
+    border-radius: 20px;
+}
+
+.skills-learning-tags span i {
+    color: #d43434;
+    font-size: 0.85rem;
 }
 
 /* ===== CONTACT PAGE (Unit 5 — Script 3) ===== */
@@ -591,7 +648,7 @@ nav {
     align-items: center;
     justify-content: center;
     color: #ffffff;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: inherit;
     font-size: 2rem;
     font-weight: bold;
     letter-spacing: 2px;
@@ -724,7 +781,7 @@ nav {
     text-decoration: none;
     border-radius: 4px;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: inherit;
 }
 
 .btn-outline:hover {
@@ -813,7 +870,15 @@ nav {
 
 /* Individual entries */
 .resume-entry {
-    margin-bottom: 28px;
+    margin-bottom: 36px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #f0f0f6;
+}
+
+.resume-entry:last-child {
+    border-bottom: none;
+    margin-bottom: 8px;
+    padding-bottom: 0;
 }
 
 .resume-entry-header {
@@ -822,32 +887,34 @@ nav {
     align-items: baseline;
     flex-wrap: wrap;
     gap: 8px;
-    margin-bottom: 2px;
+    margin-bottom: 6px;
 }
 
 .resume-entry-title {
-    font-weight: bold;
+    font-weight: 600;
     color: #1a1a2e;
-    font-size: 1rem;
+    font-size: 1.02rem;
 }
 
 .resume-entry-date {
-    font-size: 0.85rem;
-    color: #555555;
+    font-size: 0.88rem;
+    color: #666666;
     white-space: nowrap;
 }
 
 .resume-entry-org {
     display: block;
-    font-size: 0.88rem;
+    font-size: 0.93rem;
     color: #d43434;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    font-weight: 500;
 }
 
 .resume-entry-desc {
-    font-size: 0.92rem;
+    font-size: 0.97rem;
     color: #444444;
-    margin-bottom: 10px;
+    line-height: 1.7;
+    margin-bottom: 12px;
 }
 
 .resume-entry-tags {
@@ -860,7 +927,7 @@ nav {
 .resume-skills-table {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
 }
 
 .resume-skill-row {
@@ -886,17 +953,19 @@ nav {
 
 /* Tags */
 .resume-tag {
-    background: linear-gradient(to bottom, #1a1a2e 0%, rgba(26,26,46,0.6) 50%, transparent 100%);
+    background-color: #eef0f8;
     color: #1a1a2e;
+    border: 1px solid #c8cce0;
     padding: 4px 12px;
     border-radius: 12px;
     font-size: 0.85rem;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: inherit;
+    font-weight: 500;
 }
 
 .resume-tag.small {
-    font-size: 0.78rem;
-    padding: 3px 9px;
+    font-size: 0.8rem;
+    padding: 3px 10px;
 }
 
 /* Languages */
@@ -1007,7 +1076,7 @@ nav {
     text-decoration: none;
     border-radius: 4px;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: inherit;
     font-size: 0.95rem;
 }
 
@@ -1026,7 +1095,7 @@ nav {
     text-decoration: none;
     border-radius: 4px;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: inherit;
     font-size: 0.95rem;
     transition: border-color 0.2s, background-color 0.2s;
 }
@@ -1085,7 +1154,7 @@ nav {
     font-size: 1.8rem;
     font-weight: bold;
     color: #d43434;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: inherit;
     line-height: 1;
 }
 
@@ -1194,7 +1263,7 @@ nav {
     border: 1px solid rgba(255,255,255,0.25);
     padding: 3px 8px;
     border-radius: 3px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: inherit;
 }
 
 /* "View Project" button — styled for white card background */
@@ -1296,35 +1365,46 @@ header.scrolled nav {
    the portfolio's dark colour scheme and typography.
 ---------------------------------------------------------- */
 #resume-accordion .ui-accordion-header {
-    background-color: #1a1a2e;
-    color: #ffffff;
-    border: 1px solid #d43434;
+    background-color: #eef0f8;
+    color: #1a1a2e;
+    border: none;
+    border-left: 4px solid transparent;
     border-radius: 4px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: inherit;
     font-size: 1rem;
-    font-weight: bold;
-    padding: 14px 20px;
-    margin-bottom: 4px;
+    font-weight: 600;
+    padding: 15px 20px;
+    margin-bottom: 5px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, border-left-color 0.2s ease;
 }
 
-#resume-accordion .ui-accordion-header:hover,
+/* Hover: slightly more saturated — still light, readable */
+#resume-accordion .ui-accordion-header:hover {
+    background-color: #dde2f2;
+    color: #1a1a2e;
+}
+
+/* Active (open panel): white background, red left accent */
 #resume-accordion .ui-accordion-header-active {
-    background-color: #d43434;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #1a1a2e;
+    border-left: 4px solid #d43434;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
 }
 
+/* Icon is dark by default (background is now light) — no invert needed */
 #resume-accordion .ui-accordion-header .ui-icon {
-    filter: invert(1); /* make jQuery UI arrow white */
+    /* filter: invert(1) removed — dark arrow is readable on light background */
 }
 
 #resume-accordion .ui-accordion-content {
     background-color: #ffffff;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #e8e8f0;
     border-top: none;
-    padding: 20px 24px;
-    margin-bottom: 8px;
+    border-radius: 0 0 4px 4px;
+    padding: 28px 28px 20px;
+    margin-bottom: 6px;
 }
 
 .accordion-panel {
@@ -1341,7 +1421,7 @@ header.scrolled nav {
     border: 1px solid #d43434;
     border-radius: 4px;
     font-size: 0.82rem;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: inherit;
     padding: 6px 12px;
     max-width: 260px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
@@ -1394,7 +1474,7 @@ header.scrolled nav {
     padding: 6px 14px;
     border-radius: 20px;
     font-size: 0.85rem;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: inherit;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -1444,7 +1524,7 @@ header.scrolled nav {
     color: rgba(255,255,255,0.75);
     text-decoration: none;
     font-size: 0.88rem;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: inherit;
     letter-spacing: 0.5px;
     margin-bottom: 20px;
     transition: color 0.2s;
@@ -1466,7 +1546,7 @@ header.scrolled nav {
     padding: 4px 12px;
     border-radius: 3px;
     margin-bottom: 14px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: inherit;
 }
 
 .project-page-hero-content h1 {
@@ -1590,7 +1670,7 @@ header.scrolled nav {
     justify-content: center;
     color: #999;
     font-size: 0.82rem;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: inherit;
     text-align: center;
     padding: 16px;
 }
