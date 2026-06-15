@@ -204,6 +204,8 @@ The seven features work together coherently. The shared code in `main.js` is wel
 
 **Tooltip on mobile:** jQuery UI tooltips respond to hover events, which do not exist on touchscreens. Mobile visitors will not see the skill descriptions. A tap-to-reveal mechanism or always-visible description would be needed for a fully mobile-accessible implementation.
 
+**Card image overlay conflict (found and fixed post-submission):** After implementing the project card redesign — replacing solid background colours with Unsplash photos — a CSS layering bug was discovered. The `.card-image::after` pseudo-element gradient overlay was rendering above the `.card-image-label` tech badge, making the badge invisible. The fix was to add `position: relative; z-index: 1` to `.card-image-label`, which places it in a new stacking context above the `::after` layer. This highlighted the importance of testing stacking contexts carefully when combining pseudo-elements with dynamically positioned content. The `::after` overlay itself was intentional — it darkens the image slightly to improve text readability — but its stacking order required explicit correction.
+
 ---
 
 ## Resources Consulted
@@ -255,3 +257,24 @@ All features were written as original work. The following references were consul
 - MDN Web Docs — CSS transition
   https://developer.mozilla.org/en-US/docs/Web/CSS/transition
   *Used to understand how to pair CSS transitions with jQuery class toggles for smooth visual effects.*
+
+---
+
+## Placeholder Image Credits
+
+Project card images are free-to-use photographs sourced from Unsplash (unsplash.com).
+They serve as visual placeholders while the real projects are being developed.
+Each image will be replaced by an actual project screenshot once the corresponding project is complete.
+Attribution is included here in accordance with the Unsplash licence terms.
+
+| Card | Photographer | Unsplash URL |
+|---|---|---|
+| E-Commerce Dashboard | Lukas Blazek | https://unsplash.com/photos/mcSDtbWXUZU |
+| Data Pipeline Automation | Taylor Vick | https://unsplash.com/photos/M5tzZtFCOfs |
+| Interactive Quiz App | Glenn Carstens-Peters | https://unsplash.com/photos/RLw-UC03Gwc |
+| Sentiment Analysis Tool | Isaac Smith | https://unsplash.com/photos/AT77Q0Njnt0 |
+| REST API for Blog Platform | Nick Morrison | https://unsplash.com/photos/FHnnjk1Yj7Y |
+| Weather App with API | Rami Al-zayat | https://unsplash.com/photos/1523474253046-8cd2748b5fd2 |
+
+The same images are used on the home page (3 featured cards) and on the Projects page (all 6 cards).
+Attribution comments are also included directly in the HTML source of `index.html` and `projects.html`.
