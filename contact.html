@@ -91,6 +91,24 @@
       </div>
     </section>
 
+    <!-- ============================================================
+         UNIT 7 — Edmonton Weather Widget
+         Fetches current weather for Edmonton, Alberta from the
+         OpenWeatherMap API and displays it as a live card.
+    ============================================================ -->
+    <section id="weather-widget-section" class="section fade-in-section">
+      <div class="container">
+        <h2 class="section-title"><i class="fa-solid fa-cloud-sun"></i> Current Conditions in Edmonton</h2>
+        <p class="weather-section-intro">Live weather data for Edmonton, Alberta — where I'm based.</p>
+        <div id="weather-display">
+          <p class="weather-loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading weather…</p>
+        </div>
+        <p class="weather-credit">
+          Data provided by <a href="https://openweathermap.org" target="_blank">OpenWeatherMap</a>
+        </p>
+      </div>
+    </section>
+
     <!-- FOOTER -->
     <footer>
       <div class="footer-inner">
@@ -326,6 +344,147 @@
     <script src="scripts/jquery-3.7.1.min.js"></script>
     <script src="scripts/jquery-ui.min.js"></script>
     <script src="scripts/main.js"></script>
+
+    <!-- ============================================================
+         UNIT 7 — Feature 2 : OpenWeatherMap API Integration
+         COMP266 — Kossi Emile Aholou
+
+         Fetches current weather conditions for Edmonton, Alberta
+         from the OpenWeatherMap Current Weather API using the
+         Fetch API (async/await).
+
+         Data displayed from the JSON response:
+           - main.temp         : current temperature in °C
+           - weather[0].description : condition (e.g. "light snow")
+           - weather[0].icon   : official icon code → icon URL
+           - name              : city name (confirms location)
+           - dt                : Unix timestamp → local date/time
+
+         The API key is stored in a constant at the top of the script.
+         IMPORTANT: Replace YOUR_API_KEY with your actual free key
+         from openweathermap.org before deployment.
+
+         Error handling: if the fetch fails (bad key, network error,
+         rate limit), the widget hides silently without breaking the
+         contact form above it.
+
+         Persona served:
+           Maxwell Adana (Recruiter) — confirms Edmonton location
+           Sandra Rodriguez (Student) — engaging live data element
+           Linh Tran (Data Science)  — live API data on a personal site
+
+         Source: OpenWeatherMap Current Weather API
+         https://openweathermap.org/current
+    ============================================================ -->
+    <script>
+    (function () {
+
+      // ----------------------------------------------------------
+      // CONSTANTS
+      // OWM_KEY  : your OpenWeatherMap API key (free tier)
+      //            Replace YOUR_API_KEY with the key from
+      //            openweathermap.org → My API Keys
+      // OWM_CITY : city and country code for the weather request
+      // OWM_UNIT : 'metric' for Celsius (standard in Canada)
+      // ----------------------------------------------------------
+      var OWM_KEY  = '7a1fa65bffd9bd58e0721222b854a451';
+      var OWM_CITY = 'Edmonton,CA';
+      var OWM_UNIT = 'metric';
+
+      // ----------------------------------------------------------
+      // formatDate(unixTimestamp)
+      // Converts a Unix timestamp (seconds) to a readable local
+      // date/time string. Used to show when the data was last
+      // updated by OpenWeatherMap.
+      // ----------------------------------------------------------
+      function formatDate(unixTimestamp) {
+        var date = new Date(unixTimestamp * 1000);
+        return date.toLocaleDateString('en-CA', {
+          weekday: 'long', month: 'long', day: 'numeric',
+          hour: '2-digit', minute: '2-digit'
+        });
+      }
+
+      // ----------------------------------------------------------
+      // renderWeather(data)
+      // Takes the parsed JSON object from OpenWeatherMap and
+      // injects a styled weather card into #weather-display.
+      // The official OWM icon URL is constructed from the icon code
+      // returned in the API response.
+      // ----------------------------------------------------------
+      function renderWeather(data) {
+        var temp      = Math.round(data.main.temp);
+        var condition = data.weather[0].description;
+        var iconCode  = data.weather[0].icon;
+        var iconUrl   = 'https://openweathermap.org/img/wn/' + iconCode + '@2x.png';
+        var city      = data.name;
+        var updated   = formatDate(data.dt);
+
+        var html =
+          '<div class="weather-card">' +
+            '<div class="weather-icon-wrap">' +
+              '<img src="' + iconUrl + '" alt="' + condition + '">' +
+            '</div>' +
+            '<div class="weather-info">' +
+              '<div class="weather-temp">' + temp + '°C</div>' +
+              '<div class="weather-condition">' + condition + '</div>' +
+              '<div class="weather-meta">' +
+                '<span><i class="fa-solid fa-location-dot"></i> ' + city + ', Alberta</span>' +
+                '<span><i class="fa-regular fa-clock"></i> Updated ' + updated + '</span>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+
+        document.getElementById('weather-display').innerHTML = html;
+      }
+
+      // ----------------------------------------------------------
+      // hideWidget()
+      // Called when the API request fails.
+      // Silently removes the weather display and its intro text
+      // so the failure is invisible to the user.
+      // ----------------------------------------------------------
+      function hideWidget() {
+        var section = document.getElementById('weather-widget-section');
+        if (section) { section.style.display = 'none'; }
+      }
+
+      // ----------------------------------------------------------
+      // fetchWeather()
+      // Makes an asynchronous GET request to the OpenWeatherMap
+      // Current Weather API using the Fetch API (async/await).
+      // On success, calls renderWeather() to build the card.
+      // On any failure, calls hideWidget() for a silent fallback.
+      // ----------------------------------------------------------
+      async function fetchWeather() {
+        if (OWM_KEY === 'YOUR_API_KEY') {
+          // API key not yet set — hide widget silently in development
+          hideWidget();
+          return;
+        }
+
+        var url = 'https://api.openweathermap.org/data/2.5/weather' +
+                  '?q=' + OWM_CITY +
+                  '&units=' + OWM_UNIT +
+                  '&appid=' + OWM_KEY;
+        try {
+          var response = await fetch(url);
+          if (!response.ok) {
+            throw new Error('OWM API returned status ' + response.status);
+          }
+          var data = await response.json();
+          renderWeather(data);
+        } catch (err) {
+          console.warn('Weather API error:', err.message);
+          hideWidget();
+        }
+      }
+
+      // Run on page load
+      document.addEventListener('DOMContentLoaded', fetchWeather);
+
+    }());
+    </script>
 
   </body>
 </html>
