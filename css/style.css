@@ -67,32 +67,32 @@ a:hover {
 }
 
 /* ===== NAVIGATION ===== */
-nav {
+header nav {
     background: linear-gradient(135deg, #1a1a2e 0%, #2d2d4e 100%);
     border-bottom: 3px solid #d43434;
     padding: 14px 24px;
 }
-nav ul {
+header nav ul {
     list-style: none;
-    display: flex;      
+    display: flex;
     gap: 24px;
 
 }
-nav ul li {
+header nav ul li {
     color: #ffffff;
 }
-nav ul li a {
+header nav ul li a {
     color: #ffffff;
     font-family: inherit;
     font-size: 0.95rem;
     font-weight: bold;
     text-decoration: none;
 }
-nav ul li a:hover {
+header nav ul li a:hover {
     color: #aad4f5;
 }
 
-nav ul li a.active {
+header nav ul li a.active {
     color: #ffffff;
     border-bottom: 2px solid #d43434;
     padding-bottom: 2px;
@@ -487,7 +487,7 @@ footer a:hover {
 }
 
 /* ===== NAVBAR LOGO ===== */
-nav {
+header nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -2051,5 +2051,75 @@ header.scrolled nav {
 
 .weather-credit a {
     color: #aaa;
+}
+
+/* ===== RESPONSIVE / MOBILE NAV =====
+   .nav-toggle is hidden on desktop; nav ul displays inline as before.
+   Below 768px, the link list collapses into a hamburger-driven dropdown
+   toggled by scripts/main.js adding/removing the .nav-open class. */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 4px 8px;
+}
+
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: block;
+    }
+
+    header nav ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: #1a1a2e;
+        border-bottom: 3px solid #d43434;
+        padding: 8px 24px 16px;
+    }
+
+    header nav ul.nav-open {
+        display: flex;
+    }
+
+    header nav ul li {
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    header nav ul li:last-child {
+        border-bottom: none;
+    }
+
+    .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .home-about-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .projects-grid-full .project-card {
+        max-width: 100%;
+    }
+
+    .screenshot-placeholder-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-about-sidebar {
+        grid-template-columns: 1fr;
+    }
 }
 

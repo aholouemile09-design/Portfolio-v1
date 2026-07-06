@@ -157,4 +157,31 @@ $(document).ready(function () {
   });
 
 
+  /* ----------------------------------------------------------
+     MOBILE NAV TOGGLE
+     Below 768px (see css/style.css), nav ul is hidden and
+     .nav-toggle becomes visible. Clicking it adds/removes
+     .nav-open on the link list to show/hide the dropdown menu.
+     Clicking a link, or resizing back to desktop width, closes it.
+  ---------------------------------------------------------- */
+  var $navToggle = $('.nav-toggle');
+  var $navList = $('header nav ul');
+
+  $navToggle.on('click', function () {
+    var isOpen = $navList.toggleClass('nav-open').hasClass('nav-open');
+    $navToggle.attr('aria-expanded', isOpen);
+  });
+
+  $navList.on('click', 'a', function () {
+    $navList.removeClass('nav-open');
+    $navToggle.attr('aria-expanded', false);
+  });
+
+  $(window).on('resize', function () {
+    if ($(window).width() > 768) {
+      $navList.removeClass('nav-open');
+      $navToggle.attr('aria-expanded', false);
+    }
+  });
+
 }); // end document.ready

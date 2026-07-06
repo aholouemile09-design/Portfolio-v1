@@ -4,6 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kossi Aholou — Developer Portfolio</title>
+    <meta name="description" content="Electrical Engineer transitioning to Machine Learning Engineering. Portfolio of web development and ML projects, based in Edmonton, Alberta.">
+    <link rel="canonical" href="https://oltavia.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Kossi Aholou — Developer Portfolio">
+    <meta property="og:description" content="Electrical Engineer transitioning to Machine Learning Engineering. Portfolio of web development and ML projects, based in Edmonton, Alberta.">
+    <meta property="og:url" content="https://oltavia.com/">
+    <meta property="og:image" content="https://oltavia.com/images/profile.jpg">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Kossi Aholou — Developer Portfolio">
+    <meta name="twitter:description" content="Electrical Engineer transitioning to Machine Learning Engineering. Portfolio of web development and ML projects, based in Edmonton, Alberta.">
+    <meta name="twitter:image" content="https://oltavia.com/images/profile.jpg">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="scripts/jquery-ui.min.css">
@@ -14,6 +25,9 @@
     <header>
       <nav>
         <div class="logo">Kossi Aholou</div>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="projects.html">Projects</a></li>
@@ -45,7 +59,10 @@
 
         <!-- Right: profile photo -->
         <div class="hero-visual">
-          <img src="images/profile.jpg" alt="Kossi Edem Emile Aholou" class="hero-photo">
+          <picture>
+            <source srcset="images/profile.webp" type="image/webp">
+            <img src="images/profile.jpg" alt="Kossi Edem Emile Aholou" class="hero-photo" width="640" height="853" decoding="async">
+          </picture>
         </div>
 
       </div>
@@ -154,7 +171,7 @@
 
         <!-- CARD 1 — Image: Lukas Blazek / Unsplash (unsplash.com/photos/mcSDtbWXUZU) -->
         <div class="project-card" data-tech="react">
-          <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80');">
+          <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80&auto=format&fit=crop');">
             <span class="card-image-label">React</span>
           </div>
           <div class="card-info">
@@ -170,7 +187,7 @@
 
         <!-- CARD 2 — Image: Glenn Carstens-Peters / Unsplash (unsplash.com/photos/RLw-UC03Gwc) -->
         <div class="project-card" data-tech="javascript">
-          <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80');">
+          <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80&auto=format&fit=crop');">
             <span class="card-image-label">JavaScript</span>
           </div>
           <div class="card-info">
@@ -186,7 +203,7 @@
 
         <!-- CARD 3 — Image: Taylor Vick / Unsplash (unsplash.com/photos/M5tzZtFCOfs) -->
         <div class="project-card" data-tech="python">
-          <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80');">
+          <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80&auto=format&fit=crop');">
             <span class="card-image-label">Python</span>
           </div>
           <div class="card-info">
