@@ -1,47 +1,16 @@
-<div align="center">
-<img alt="Portfolio" src="https://github.com/dillionverma/portfolio/assets/16860528/57ffca81-3f0a-4425-b31d-094f61725455" width="90%">
-</div>
+# Portfolio de Kossi Edem Emile Aholou
 
-# Portfolio [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdillionverma%2Fportfolio)
+Site en ligne : https://oltavia.com
 
-Built with next.js, [shadcn/ui](https://ui.shadcn.com/), and [magic ui](https://magicui.design/), deployed on Vercel.
+Un seul site, quatre profils (vue d'ensemble, IA et ML, génie électrique, gestion de projet),
+en français et en anglais. Un lien direct ouvre la bonne version : `?profil=electrique&lang=en`.
 
-# Features
+- Contenu : `src/data/resume.tsx`
+- Langue et profil : `src/lib/site.tsx`
+- CV : `python cv/generer_cv.py` (Word puis PDF par Word). Les CV publiés dans `public/cv/`
+  n'ont pas de numéro de téléphone ; les versions complètes restent hors du dépôt.
 
-- Setup only takes a few minutes by editing the [single config file](./src/data/resume.tsx)
-- Built using Next.js 14, React, Typescript, Shadcn/UI, TailwindCSS, Framer Motion, Magic UI
-- Includes a blog
-- Responsive for different devices
-- Optimized for Next.js and Vercel
+Construire le site statique : `pnpm install`, puis `pnpm build` (sortie dans `out/`).
+La branche `main` du dépôt contient le site construit, servi par GitHub Pages.
 
-# Getting Started Locally
-
-1. Clone this repository to your local machine:
-
-   ```bash
-   git clone https://github.com/dillionverma/portfolio
-   ```
-
-2. Move to the cloned directory
-
-   ```bash
-   cd portfolio
-   ```
-
-3. Install dependencies:
-
-   ```bash
-   pnpm install
-   ```
-
-4. Start the local Server:
-
-   ```bash
-   pnpm dev
-   ```
-
-5. Open the [Config file](./src/data/resume.tsx) and make changes
-
-# License
-
-Licensed under the [MIT license](https://github.com/dillionverma/portfolio/blob/main/LICENSE.md).
+Basé sur le modèle Magic UI Portfolio de Dillion Verma (licence MIT, voir `LICENSE`).
